@@ -14,7 +14,7 @@ Clone this repository and go to the project directory. Then run the following co
 docker compose up --build
 ```
 
-Laravel app will now be available at `http://localhost:9000`.
+Rails app will now be available at `http://localhost:9000`.
 
 Open http://localhost:9000 in your browser and refresh the page a few times to generate some traces. Traces are printed to console (where docker compose is running) by default. If you want to send traces to a backend tool, comment out the `OTEL_TRACES_EXPORTER=console` line and uncomment the `OTEL_TRACES_EXPORTER=otlp` and `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=...` line in [docker-compose.yml](docker-compose.yml).
 
