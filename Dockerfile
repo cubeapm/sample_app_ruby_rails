@@ -1,32 +1,12 @@
-# Use an official Ubuntu as a base image
 FROM ubuntu:22.04
 
 # Set environment variables to avoid tzdata prompts
 ENV DEBIAN_FRONTEND=noninteractive \
     TZ=Etc/UTC
 
-# Set the RUBY_VERSION as an argument
 ARG RUBY_VERSION=3.3.6
 
-# Install dependencies for Rails app and SSL certificates
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y \
-    curl \
-    nodejs \
-    yarn \
-    build-essential \
-    libpq-dev \
-    libjemalloc2 \
-    libvips \
-    libssl-dev \
-    libreadline-dev \
-    zlib1g-dev \
-    git \
-    pkg-config \
-    ca-certificates \
-    gnupg2 \
-    tzdata && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update -qq && apt-get install --no-install-recommends -y curl nodejs yarn build-essential libpq-dev libjemalloc2 libvips libssl-dev libreadline-dev zlib1g-dev git pkg-config ca-certificates gnupg2 tzdata && rm -rf /var/lib/apt/lists/*
 
 # Import RVM's GPG keys to fix signature verification error
 RUN curl -sSL https://rvm.io/mpapis.asc | gpg2 --import - && \
@@ -66,19 +46,15 @@ RUN mkdir -p /rails/tmp/cache /rails/tmp/pids /rails/tmp/sockets && \
     chmod -R 755 /rails/tmp && \
     chmod -R 755 /rails/log
 
-# Copy Gemfile and Gemfile.lock before running bundle install
 COPY Gemfile Gemfile.lock ./
 
-# Create working directory
 WORKDIR /rails
 
 # Install Bundler gem (force installation of the required version)
 RUN /bin/bash -l -c "gem install bundler -v '2.5.23' --no-document"
 
-# Install the gems specified in the Gemfile
 RUN /bin/bash -l -c "bundle install"
 
-# Copy the rest of the application files
 COPY . .
 
 # Ensure the Rails application directory and subdirectories are owned by the correct user
@@ -92,8 +68,6 @@ RUN /bin/bash -l -c "SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile"
 # Set up the entrypoint for the Rails application
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
-# Expose the port on which Rails will run
 EXPOSE 9000
 
-# Command to start the Rails server
 CMD ["bin/rails", "server"]

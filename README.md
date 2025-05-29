@@ -1,12 +1,18 @@
-# README
+# Ruby Rails Instrumentation
 
-# Ruby Rails OpenTelemetry Instrumentation
+This is a sample app to demonstrate how to instrument Ruby Rails app with **Datadog**, **Elastic**, **New Relic** and **OpenTelemetry**. It contains source code for the Ruby Rails app which interacts with various services like Redis, MySQL, etc. to demonstrate tracing for these services. This repository has a docker compose file to set up all these services conveniently.
 
-This is a sample app to demonstrate how to instrument Ruby Rails app with OpenTelemetry. The app itself is a minimal Rails app. This repository has a docker compose file for convenient setup.
+The code is organized into multiple branches. The main branch has the Ruby Rails app without any instrumentation. Other branches then build upon the main branch to add specific instrumentations as below:
 
-This repository is inentionally designed to work with any OpenTelemetry backend, not just CubeAPM. In fact, it can even work without any OpenTelemetry backend (by dumping traces to console, which is also the default behaviour).
+| Branch                                                                                         | Instrumentation | Code changes for instrumentation                                                                                |
+| ---------------------------------------------------------------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------- |
+| [main](https://github.com/cubeapm/sample_app_ruby_rails/tree/main)         | None            | -                                                                                                               |
+| [datadog](https://github.com/cubeapm/sample_app_ruby_rails/tree/datadog) | Datadog       | [main...datadog](https://github.com/cubeapm/sample_app_ruby_rails/compare/main...datadog) |
+| [elastic](https://github.com/cubeapm/sample_app_ruby_rails/tree/elastic) | Elastic       | [main...elastic](https://github.com/cubeapm/sample_app_ruby_rails/compare/main...elastic) |
+| [newrelic](https://github.com/cubeapm/sample_app_ruby_rails/tree/newrelic) | New Relic       | [main...newrelic](https://github.com/cubeapm/sample_app_ruby_rails/compare/main...newrelic) |
+| [otel](https://github.com/cubeapm/sample_app_ruby_rails/tree/otel)         | OpenTelemetry   | [main...otel](https://github.com/cubeapm/sample_app_ruby_rails/compare/main...otel)         |
 
-## Setup
+# Setup
 
 Clone this repository and go to the project directory. Then run the following commands
 
@@ -16,36 +22,8 @@ docker compose up --build
 
 Rails app will now be available at `http://localhost:9000`.
 
-Open http://localhost:9000 in your browser and refresh the page a few times to generate some traces. Traces are printed to console (where docker compose is running) by default. If you want to send traces to a backend tool, comment out the `OTEL_TRACES_EXPORTER=console` line and uncomment the `OTEL_TRACES_EXPORTER=otlp` and `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=...` line in [docker-compose.yml](docker-compose.yml).
+The app has various API endpoints to demonstrate integrations with Redis, MySQL, etc. Check out [config/routes.rb](config/routes.rb) for the list of API endpoints.
 
-## Contributing
+# Contributing
 
 Please feel free to raise PR for any enhancements - additional service integrations, library version updates, documentation updates, etc.
-
-
-
-
-
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

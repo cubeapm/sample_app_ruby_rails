@@ -8,11 +8,8 @@ Rails.application.routes.draw do
   get '/param/:param', to: 'api#param'
   get '/exception', to: 'api#exception'
   get '/api', to: 'api#api'
-  post '/user', to: 'api#create_user'
-  get '/user/:id', to: 'api#get_user'
+  get '/mysql', to: 'api#mysql'
   get '/redis', to: 'api#redis'
-  # get '/kafka/produce', to: 'api#kafka_produce'
-  # get '/kafka/consume', to: 'api#kafka_consume'
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
