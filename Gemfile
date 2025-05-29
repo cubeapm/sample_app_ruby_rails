@@ -75,3 +75,8 @@ group :test do
 end
 
 
+gem "opentelemetry-sdk", "~> 1.8"
+
+gem "opentelemetry-exporter-otlp", "~> 0.30.0"
+
+gem "opentelemetry-instrumentation-all", "~> 0.76.0"
