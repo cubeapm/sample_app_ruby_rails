@@ -75,3 +75,5 @@ group :test do
 end
 
 
+
+gem "newrelic_rpm", "~> 9.19"
