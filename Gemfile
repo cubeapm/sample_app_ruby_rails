@@ -74,4 +74,5 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem 'datadog', require: 'datadog/auto_instrument'
 
