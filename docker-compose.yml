@@ -14,11 +14,10 @@ services:
       # - ELASTIC_APM_SERVICE_VERSION=1.1.1
       # - ELASTIC_APM_GLOBAL_LABELS=mykey1=myvalue1,mykey2=myvalue2
 
-      # By default Elastic APM logs to stdout, if ELASTIC_APM_LOG_PATH is specified this will print to the path instead
-      # - ELASTIC_APM_LOG_PATH=log/elastic_apm.log
+      # Print Elastic agent logs on screen
+      # - ELASTIC_APM_LOG_FILE=stdout
       # Set Elastic agent log level to debug if needed to see detailed logs
       # - ELASTIC_APM_LOG_LEVEL=debug
-      
     ports:
       - "9000:9000"
     depends_on:
