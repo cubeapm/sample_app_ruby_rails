@@ -17,7 +17,8 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-gem 'redis'
+# Elastic apm agent does not support redis 5+ [https://github.com/elastic/apm-agent-ruby/issues/1307]
+gem 'redis', "~> 4.8"
 
 gem 'faraday'
 
