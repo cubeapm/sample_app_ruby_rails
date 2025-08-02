@@ -21,8 +21,6 @@ gem 'redis'
 
 gem 'faraday'
 
-gem 'ruby-kafka'
-
 gem 'gruf'
 gem 'trilogy'
 
