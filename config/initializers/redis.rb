@@ -1,7 +1,7 @@
 require 'redis'
 
 $redis = Redis.new(
-  host: 'redis',  # Update to 'redis' if using Docker
+  host: 'redis',
   port: 6379,
   db: 0
 )
