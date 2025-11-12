@@ -8,7 +8,10 @@ services:
       - OTEL_SERVICE_NAME=cube_sample_app_ruby_rails_otel
       - OTEL_EXPORTER_OTLP_COMPRESSION=gzip
       # - OTEL_METRICS_EXPORTER=none 
-      # - OTEL_LOGS_EXPORTER=none 
+      # - OTEL_LOGS_EXPORTER=none
+
+      # optional settings
+      - OTEL_RESOURCE_ATTRIBUTES=cube.environment=staging,service.version=1.2.3,mykey1=myvalue1,mykey2=myvalue2
 
       # print traces on console
       - OTEL_TRACES_EXPORTER=console
