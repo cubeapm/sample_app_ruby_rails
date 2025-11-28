@@ -75,3 +75,5 @@ end
 
 
 gem "newrelic_rpm", "~> 9.19"
+
+gem "puma-newrelic"
